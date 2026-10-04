@@ -2,6 +2,8 @@
 
 Landing estática en español. Abrir con `node server.mjs` en http://127.0.0.1:4173.
 
+En GitHub Pages, usar la rama `main` y la carpeta `/ (root)` como origen. El `index.html` de la raíz abre la landing en `dist/`. El archivo `.nojekyll` permite servir los archivos estáticos sin procesarlos con Jekyll.
+
 Incluye navegación fija, menú móvil, acordeón de servicios, galería enlazada a Instagram y diálogo de consulta por WhatsApp. No confirma reservas: abre WhatsApp para coordinar con el salón.
 
 Logo, identidad y datos de contacto tomados de las referencias del usuario. La fuente exacta del material no está identificada; Jost aproxima su estilo geométrico y Cormorant Garamond añade una dirección editorial premium. El contenido de servicios debe validarse con el salón.
