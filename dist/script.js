@@ -21,3 +21,17 @@ booking.addEventListener('click', event => { if (event.target === booking) { con
 document.querySelectorAll('.service-list details').forEach(detail => detail.addEventListener('toggle', () => { if (detail.open) document.querySelectorAll('.service-list details').forEach(other => { if (other !== detail) other.open = false; }); }));
 document.querySelector('#year').textContent = new Date().getFullYear();
 updateWhatsApp();
+const videoGallery = document.querySelector('#video-gallery');
+const videoNavigation = [...document.querySelectorAll('.reel-nav')];
+function updateVideoNavigation() {
+  const maxScroll = videoGallery.scrollWidth - videoGallery.clientWidth;
+  videoNavigation.forEach(button => { button.disabled = Number(button.dataset.direction) < 0 ? videoGallery.scrollLeft <= 2 : videoGallery.scrollLeft >= maxScroll - 2; });
+}
+videoNavigation.forEach(button => button.addEventListener('click', () => {
+  const card = videoGallery.querySelector('.reel-card');
+  const gap = parseFloat(getComputedStyle(videoGallery).gap) || 0;
+  videoGallery.scrollBy({left:(card.getBoundingClientRect().width + gap) * Number(button.dataset.direction),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+}));
+videoGallery.addEventListener('scroll', updateVideoNavigation, {passive:true});
+new ResizeObserver(updateVideoNavigation).observe(videoGallery);
+updateVideoNavigation();
