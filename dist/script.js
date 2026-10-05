@@ -35,3 +35,23 @@ videoNavigation.forEach(button => button.addEventListener('click', () => {
 videoGallery.addEventListener('scroll', updateVideoNavigation, {passive:true});
 new ResizeObserver(updateVideoNavigation).observe(videoGallery);
 updateVideoNavigation();
+const heroPhotoPane = document.querySelector('.hero-background');
+const heroPhoto = heroPhotoPane.querySelector('img');
+const mobileHero = window.matchMedia('(max-width: 600px)');
+function configureMobileHero() {
+  if (mobileHero.matches) {
+    heroPhotoPane.setAttribute('tabindex', '0');
+    heroPhotoPane.setAttribute('role', 'region');
+    heroPhotoPane.setAttribute('aria-label', 'Foto del equipo: desliza horizontalmente para verla completa');
+    heroPhotoPane.scrollLeft = (heroPhotoPane.scrollWidth - heroPhotoPane.clientWidth) / 2;
+  } else {
+    heroPhotoPane.removeAttribute('tabindex');
+    heroPhotoPane.removeAttribute('role');
+    heroPhotoPane.removeAttribute('aria-label');
+    heroPhotoPane.scrollLeft = 0;
+  }
+}
+mobileHero.addEventListener('change', configureMobileHero);
+heroPhoto.addEventListener('load', configureMobileHero);
+new ResizeObserver(() => { if (mobileHero.matches) configureMobileHero(); }).observe(heroPhotoPane);
+configureMobileHero();

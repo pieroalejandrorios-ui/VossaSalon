@@ -60,3 +60,15 @@
 .reels-carousel .reel-nav:hover:not(:disabled){background:var(--deep);color:white;transform:scale(1.08);box-shadow:0 5px 16px #12565925}
 .reels-carousel .reel-nav:disabled{opacity:.35;box-shadow:none}
 @media(max-width:600px){.reels-carousel{padding:0 18px}.reels-carousel .reel-nav{width:36px;height:36px;top:calc(50% - 18px)}.reel-prev{left:-6px}.reel-next{right:-6px}.reel-nav svg{width:19px;height:19px}}
+/* La foto de portada se puede recorrer solo en celular. */
+.hero-pan-hint{display:none}
+@media(max-width:600px){
+  .hero-photo .hero-background{overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#b5e5df #164849;-webkit-overflow-scrolling:touch}
+  .hero-photo .hero-background img{width:auto;max-width:none;height:100%;margin:0;object-fit:contain;object-position:center;user-select:none;-webkit-user-drag:none}
+  .hero-photo .hero-background:after{display:none}
+  .hero.hero-photo:after{content:'';position:absolute;inset:82px 0 0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(15,55,57,.64),rgba(15,55,57,.8) 65%,rgba(15,55,57,.97))}
+  .hero-photo .hero-copy{pointer-events:none}
+  .hero-photo .hero-copy a,.hero-photo .hero-copy button{pointer-events:auto}
+  .hero-pan-hint{display:block;position:absolute;bottom:26px;left:7%;right:7%;font-size:12px;color:#d9eee9;letter-spacing:.4px;pointer-events:none}
+  .hero-background:focus-visible{outline:2px solid #b5e5df;outline-offset:-4px}
+}
